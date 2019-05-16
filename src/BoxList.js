@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Box from './Box';
+import BoxForm from './BoxForm';
 import uuid from 'uuid/v4';
 
 class BoxList extends Component {
@@ -25,11 +26,16 @@ class BoxList extends Component {
 
   render() {
     const theBoxes = this.state.boxes.map(box => (
-      <Box key={box.id} height={box.height} width={box.width} backgroundColor={box.backgroundColor} />
-    ))
-    return (
-      <div className="BoxList">
+      <Box key={box.id}
+            height={box.height}
+            width={box.width}
+            backgroundColor={box.backgroundColor}
+            />
+            ))
+            return (
+              <div className="BoxList">
         {theBoxes}
+        <BoxForm addBox={this.addBox}  />
       </div>
     );
   }
