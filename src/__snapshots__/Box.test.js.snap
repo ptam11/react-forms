@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot matches 1`] = `
+<div
+  className="Box"
+  style={
+    Object {
+      "backgroundColor": "dodgerblue",
+      "height": "100px",
+      "width": "100px",
+    }
+  }
+/>
+`;

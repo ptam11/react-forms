@@ -6,7 +6,7 @@ class BoxForm extends Component {
     this.state= {
       width: '',
       height: '',
-      backgroundColor: ''
+      backgroundColor: '#000000'
     }
     this.handleChange = this.handleChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
@@ -37,7 +37,7 @@ class BoxForm extends Component {
           <label htmlFor="height" > Height: </label>
           <input onChange={this.handleChange} value={this.state.height} type='number' name="height" />
           <label htmlFor="backgroundColor" > Background Color: </label>
-          <input onChange={this.handleChange} value={this.state.backgroundColor} type='text' name="backgroundColor" />
+          <input onChange={this.handleChange} value={this.state.backgroundColor} type='color' name="backgroundColor" />
           <button>Add Box!!!!!</button>
         </form>
       </div>

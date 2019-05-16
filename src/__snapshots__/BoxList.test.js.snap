@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot matches 1`] = `
+<div
+  className="BoxList"
+>
+  <BoxForm
+    addBox={[Function]}
+  />
+  <Box
+    backgroundColor="dodgerblue"
+    height={100}
+    key="683c5abe-1b49-45ff-929c-4d32e6b57a45"
+    width={100}
+  />
+</div>
+`;
