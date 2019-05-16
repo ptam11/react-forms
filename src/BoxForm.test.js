@@ -4,6 +4,12 @@ import { shallow, mount, configure } from "enzyme";
 import toJson from "enzyme-to-json";
 import Adapter from "enzyme-adapter-react-16";
 
+jest.mock('uuid', () => {
+  return {
+      v4: jest.fn(() => 1)
+  };
+});
+
 configure({
   adapter: new Adapter()
 });
@@ -18,27 +24,35 @@ it('snapshot matches', () => {
   expect(serialized).toMatchSnapshot();
 });
 
-xit('it renders initial message', () => {
+it("allows for changes in height, width, and color", function() {
   let wrapper = mount(<BoxForm />);
-  expect(wrapper.exists('p')).toEqual(true);
-  expect(wrapper.html()).toContain("Think of a Question");
+ 
+  const width = wrapper.find('#width');
+  width.instance().value = "100";
+  width.simulate("change");
+  
+  const height = wrapper.find('#height');
+  height.instance().value = "100";
+  height.simulate("change");
+  
+  const backgroundColor = wrapper.find('#backgroundColor');
+  backgroundColor.instance().value = "#000000";
+  backgroundColor.simulate("change");
+
+  expect(wrapper.state().width).toEqual("100");
+  expect(wrapper.state().height).toEqual("100");
+  expect(wrapper.state().backgroundColor).toEqual("#000000");
+
 });
 
-xit('it renders correct message', () => {
-  let wrapper = mount(<BoxForm />);
-  wrapper.setState({ msg: "Hello", color: "rebeccapurple" });
-  let p_elem = wrapper.find('p').first();
-  expect(p_elem.equals(<p>Hello</p>)).toEqual(true);
-});
+it("runs a mocked fn on submit", function () {
+  const submitFn = jest.fn();
+  let wrapper = mount(
+    <BoxForm addBox={submitFn} />
+  );
+  const form = wrapper.find("form")
 
-const shortList = [
-  { msg: "Whiskey is a dog.", color: "green" },
-  { msg: "Whiskey likes food.", color: "green" },
-  { msg: "Whiskey likes sleeping.", color: "green" },
-]
+  form.simulate("submit")
 
-xit('it changes default message on click', () => {
-  let wrapper = mount(<BoxForm  answers={shortList}/>);
-  wrapper.simulate("click");
-  expect(wrapper.html()).toContain("Whiskey");
+  expect(submitFn).toHaveBeenCalled();
 });

@@ -10,7 +10,7 @@ exports[`snapshot matches 1`] = `
   <Box
     backgroundColor="dodgerblue"
     height={100}
-    key="683c5abe-1b49-45ff-929c-4d32e6b57a45"
+    key="1"
     width={100}
   />
 </div>
